@@ -1,0 +1,85 @@
+# 数据源配置
+spring:
+  #  profiles:
+  #    active: local
+  # 数据库配置
+  datasource:
+    url: jdbc:mysql://localhost:3306/finance?useUnicode=true&useSSL=false&characterEncoding=utf8&allowPublicKeyRetrieval=true&serverTimezone=Asia/Shanghai&allowMultiQueries=true
+    username: root
+    password: 123456
+  # redis配置
+  redis:
+    database: 0
+    port: 6380
+    lettuce:
+      pool:
+        #连接池中最大空闲连接数为 30。这意味着连接池可以保持最多 30 个空闲的 Redis 连接，以便在需要时重用。
+        max-idle: 30
+        #连接池中最小空闲连接数为 10。这表示连接池至少会保持 10 个空闲连接，以便在需要时快速获取可用连接。
+        min-idle: 10
+        #连接池中的最大活动连接数为 30。这是指连接池在同一时间可以支持的最大活动（使用中）连接数量。
+        max-active: 30
+        #当连接池已用尽且达到最大活动连接数时，从连接池获取连接的最大等待时间为 10,000 毫秒（10 秒）。如果在等待时间内没有可用连接，将抛出连接超时异常。
+        max-wait: 10000
+      # 应用程序关闭时Lettuce 将等待最多 3 秒钟来完成关闭操作。如果超过这个时间仍未完成，则会强制关闭连接。
+      shutdown-timeout: 3000
+    host: 127.0.0.1
+
+# 日志配置
+logging:
+  file:
+    name: ../${spring.application.name}/logs/bage-finance-admin-api.log
+
+redisson:
+  address: redis://127.0.0.1:6379
+
+wx:
+  mp:
+    appid: wx704a38aacbc1e64d
+    secret: 3725a9046403754a25b44332633dd22b
+    codeExpire: 3600
+    token: 2b6cdc195df211edb28e00163e0f80b5
+    encodingAESKey:
+
+xxl:
+  job:
+    admin:
+      ### 调度中心部署跟地址 [选填]：如调度中心集群部署存在多个地址则用逗号分隔。执行器将会使用该地址进行"执行器心跳注册"和"任务结果回调"；为空则关闭自动注册；
+      addresses: http://localhost:8080/xxl-job-admin
+    ### 执行器通讯TOKEN [选填]：非空时启用；
+    accessToken: e1c717f2-9d58-11ee-a3a0-00155d9bf92e
+
+ali:
+  accessKeyId: 你的阿里云账号accessKeyId
+  accessKeySecret: 你的阿里云账号accessKeySecret
+  sms:
+    enable: true
+    endpoint: dysmsapi.aliyuncs.com
+    region: cn-hangzhou
+
+rocketmq:
+  name-server: 127.0.0.1:9876
+  producer:
+    # 生产者组
+    group: producer-group-1
+
+
+elasticsearch:
+  host: localhost
+  port: 9200
+  scheme: http
+  apiKey: test
+
+minio:
+  # 访问资源的 URL
+  base-url: "http://127.0.0.1:9002/"
+  # API 端点
+  endpoint: "http://127.0.0.1:9002/"
+  # 上传的 Bucket
+  bucket: finance
+  # Access Key
+  access-key: minio
+  # Secret Key
+  secret-key: cb709155c24a420a95f7bde91c3ed3a7
+  # 生成的临时访问地址过期时间（单位：分钟）
+  expire-time: 5
