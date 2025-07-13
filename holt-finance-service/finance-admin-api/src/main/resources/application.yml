@@ -46,7 +46,7 @@ spring:
 
 # Mybatis
 mybatis:
-  mapper-locations: classpath*:mapper/**/*Mapper.xml
+  mapper-locations: classpath*:**/*Mapper.xml
   type-aliases-package: com.holt
   configuration:
     map-underscore-to-camel-case: true
