@@ -1,0 +1,3 @@
+sys:
+  #是否启用自定义安全框架
+  enable-my-security: false

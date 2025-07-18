@@ -2,10 +2,7 @@ package com.holt.finance.admin.api.controller;
 
 import com.holt.common.dto.ApiResponse;
 import com.holt.common.dto.TokenResponse;
-import com.holt.finance.biz.dto.form.GetBase64CodeForm;
-import com.holt.finance.biz.dto.form.GetSmsCodeForm;
-import com.holt.finance.biz.dto.form.PhonePasswordLoginForm;
-import com.holt.finance.biz.dto.form.PhoneSmsCodeLoginForm;
+import com.holt.finance.biz.dto.form.*;
 import com.holt.finance.biz.service.MemberLoginService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -51,5 +48,12 @@ public class LoginController {
     @PostMapping(value = "/phoneSmsCodeLogin")
     public ApiResponse<TokenResponse> phoneSmsCodeLogin(@Validated @RequestBody PhoneSmsCodeLoginForm request) {
         return ApiResponse.success(memberLoginService.phoneSmsCodeLogin(request));
+    }
+
+    @ApiOperation(value = "获取客户端token")
+    @GetMapping(value = "/getClientToken")
+    public ApiResponse<TokenResponse> getClientToken(@Validated @ModelAttribute GetClientTokenForm request) {
+        TokenResponse result = memberLoginService.getClientToken(request.getClientId());
+        return ApiResponse.success(result);
     }
 }

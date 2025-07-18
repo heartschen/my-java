@@ -11,4 +11,7 @@ public class RedisKeyConstant {
      * 新增或修改手机号
      */
     public static final String PHONE_CHANGE = "PHONE_CHANGE:";
+
+    public static final String CLIENT_TOKEN_KEY = "CLIENT_TOKEN_KEY:";
+
 }

@@ -1,7 +1,9 @@
 package com.holt.finance.admin.api.controller;
 
 import com.holt.common.dto.ApiResponse;
+import com.holt.finance.biz.dto.form.GenerateMpRegCodeForm;
 import com.holt.finance.biz.dto.form.PhoneRegisterForm;
+import com.holt.finance.biz.dto.vo.GenerateMpRegCodeVo;
 import com.holt.finance.biz.service.MemberRegService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -22,6 +24,12 @@ public class RegController {
     @PostMapping(value = "/phoneReg")
     public ApiResponse<Long> phoneReg(@Validated @RequestBody PhoneRegisterForm form) {
         return ApiResponse.success(memberRegService.phoneReg(form));
+    }
+
+    @ApiOperation(value = "生成微信公众号二维码（关注注册）")
+    @GetMapping(value = "/generateMpRegCode")
+    public ApiResponse<GenerateMpRegCodeVo> generateMpRegCode(@Validated @ModelAttribute GenerateMpRegCodeForm request) {
+        return ApiResponse.success(memberRegService.generateMpRegCode(request.getClientId()));
     }
 
 

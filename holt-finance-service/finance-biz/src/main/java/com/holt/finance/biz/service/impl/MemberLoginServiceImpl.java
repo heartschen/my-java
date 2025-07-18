@@ -202,6 +202,18 @@ public class MemberLoginServiceImpl implements MemberLoginService {
             throw new BizException("登录失败", ex);
         }
     }
+
+    /**
+     * 获取客户端token
+     *
+     * @param clientId
+     * @return
+     */
+    @Override
+    public TokenResponse getClientToken(String clientId) {
+        return (TokenResponse) redisTemplate.opsForValue().get(RedisKeyConstant.CLIENT_TOKEN_KEY + clientId);
+    }
+
 }
 
 

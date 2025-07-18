@@ -35,11 +35,11 @@ redisson:
 
 wx:
   mp:
-    appid: wx704a38aacbc1e64d
-    secret: 3725a9046403754a25b44332633dd22b
+    appid: wxa36cd47c9c97f47e
+    secret: 6cfc06ac39948d117d4702fdc57f4074
     codeExpire: 3600
-    token: 2b6cdc195df211edb28e00163e0f80b5
-    encodingAESKey:
+    token: 6cfc06ac39948d117d4702fdc57f4074
+
 
 xxl:
   job:
